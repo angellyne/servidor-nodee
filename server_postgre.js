@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
-
+const mysql = require('mysql2');
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -21,7 +21,7 @@ const pool = new Pool({
 // Testa a conexão e garante que a tabela 'alunos' seja criada no PostgreSQL
 pool.query(`
   CREATE TABLE IF NOT EXISTS alunos (
-    id SERIAL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL
   );
 `, (err, res) => {
